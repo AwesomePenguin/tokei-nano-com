@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Params.intro }}">
+  <meta property="og:image" content="{{ .Site.Params.image | absURL }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta name="theme-color" content="#17141d">
+  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">{{ end }}
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
+  <script src="{{ "js/site.js" | relURL }}" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>時計奈野</span>
+    </a>
+    <nav class="language-nav" aria-label="Language">
+      {{ range .AllTranslations }}
+        <a href="{{ .RelPermalink }}" lang="{{ .Language.Locale }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+      {{ end }}
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="{{ "images/tokei-nano-hero.png" | relURL }}" alt="時計奈野が夕暮れの屋上でアコースティックギターを演奏している">
+      <div class="hero-shade"></div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow">{{ .Params.eyebrow }}</p>
+        <h1 id="hero-title">{{ .Title }}</h1>
+        {{ if ne .Language.Lang "en" }}<p class="romanized">Tokei Nano</p>{{ end }}
+        <p class="intro">{{ .Params.intro }}</p>
+      </div>
+      <a class="scroll-cue" href="#release" aria-label="{{ .Params.release_title }}">
+        <span>{{ .Params.release_label }}</span>
+        <span aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <section class="release" id="release">
+      <div class="release-art reveal">
+        <img src="{{ "images/hello-world-cover.png" | relURL }}" alt="hello world cover art" loading="lazy">
+      </div>
+      <div class="release-copy reveal">
+        <p class="section-kicker">{{ .Params.release_label }}</p>
+        <h2>{{ .Params.release_title }}</h2>
+        <p class="release-date">{{ .Params.release_date }}</p>
+        <div class="primary-actions">
+          <a class="button button-primary" href="https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84" target="_blank" rel="noopener noreferrer">{{ .Params.listen_label }} <span aria-hidden="true">↗</span></a>
+          <a class="button button-quiet" href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer">{{ .Params.artist_label }} <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="about-copy reveal">
+        <p class="section-kicker">Profile</p>
+        <h2>{{ .Params.about_title }}</h2>
+        <p>{{ .Params.about }}</p>
+      </div>
+      <div class="social-links reveal" aria-label="Official links">
+        <a href="https://www.youtube.com/@tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ .Params.youtube_label }}</span><span aria-hidden="true">↗</span></a>
+        <a href="https://www.instagram.com/tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ .Params.instagram_label }}</span><span aria-hidden="true">↗</span></a>
+        <a href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <section class="credits" id="credits">
+      <div class="credits-heading reveal">
+        <p class="section-kicker">Credits</p>
+        <h2>{{ .Params.credits_title }}</h2>
+        <p>{{ .Params.credits_text }}</p>
+      </div>
+      <dl class="credit-list reveal">
+        <div><dt>{{ .Params.producer_label }}</dt><dd>Si Hang Xie</dd></div>
+        <div><dt>{{ .Params.label_label }}</dt><dd><a href="https://lost-raven.com/" rel="me">Lost Raven Records ↗</a></dd></div>
+        <div><dt>{{ .Params.contact_label }}</dt><dd><a href="mailto:sihangxie@gmail.com">sihangxie@gmail.com</a></dd></div>
+      </dl>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 時計奈野</p>
+    <p>{{ .Params.legal_note }}</p>
+  </footer>
+</body>
+</html>
