@@ -32,7 +32,11 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <img class="hero-image" src="{{ "images/tokei-nano-hero.png" | relURL }}" alt="時計奈野が夕暮れの屋上でアコースティックギターを演奏している">
+      <picture>
+        <source type="image/avif" srcset="{{ "images/tokei-nano-hero-960.avif" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.avif" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.avif" | relURL }} 2400w" sizes="100vw">
+        <source type="image/webp" srcset="{{ "images/tokei-nano-hero-960.webp" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.webp" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.webp" | relURL }} 2400w" sizes="100vw">
+        <img class="hero-image" src="{{ "images/tokei-nano-hero-1600.jpg" | relURL }}" srcset="{{ "images/tokei-nano-hero-960.jpg" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.jpg" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.jpg" | relURL }} 2400w" sizes="100vw" width="2400" height="1018" alt="時計奈野が夕暮れの屋上でアコースティックギターを演奏している" decoding="async" fetchpriority="high">
+      </picture>
       <div class="hero-shade"></div>
       <div class="hero-copy reveal">
         <p class="eyebrow">{{ .Params.eyebrow }}</p>
@@ -48,7 +52,11 @@
 
     <section class="release" id="release">
       <div class="release-art reveal">
-        <img src="{{ "images/hello-world-cover.png" | relURL }}" alt="hello world cover art" loading="lazy">
+        <picture>
+          <source type="image/avif" srcset="{{ "images/hello-world-cover-480.avif" | relURL }} 480w, {{ "images/hello-world-cover-960.avif" | relURL }} 960w, {{ "images/hello-world-cover-1440.avif" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
+          <source type="image/webp" srcset="{{ "images/hello-world-cover-480.webp" | relURL }} 480w, {{ "images/hello-world-cover-960.webp" | relURL }} 960w, {{ "images/hello-world-cover-1440.webp" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
+          <img src="{{ "images/hello-world-cover-960.jpg" | relURL }}" srcset="{{ "images/hello-world-cover-480.jpg" | relURL }} 480w, {{ "images/hello-world-cover-960.jpg" | relURL }} 960w, {{ "images/hello-world-cover-1440.jpg" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px" width="1440" height="1440" alt="hello world cover art" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div class="release-copy reveal">
         <p class="section-kicker">{{ .Params.release_label }}</p>
