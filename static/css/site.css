@@ -71,7 +71,8 @@ h2 { font-size: 2.5rem; }
 .release { display: grid; grid-template-columns: minmax(260px, 560px) 1fr; gap: 8vw; align-items: center; padding: 8rem 0; }
 .release-art { position: relative; }
 .release-art::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--red); z-index: -1; }
-.release-art img { aspect-ratio: 1; object-fit: cover; }
+.release-art picture { display: block; width: 100%; }
+.release-art img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
 .release h2 { font-size: 4rem; }
 .release-date { margin: 1rem 0 1.5rem; font-size: 1.05rem; }
 .release-countdown { margin: 0 0 2rem; padding: 1rem 0; border-block: 1px solid var(--line); }
