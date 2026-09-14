@@ -12,6 +12,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -72,11 +73,22 @@ h2 { font-size: 2.5rem; }
 .release-art::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--red); z-index: -1; }
 .release-art img { aspect-ratio: 1; object-fit: cover; }
 .release h2 { font-size: 4rem; }
-.release-date { margin: 1rem 0 2rem; font-size: 1.05rem; }
+.release-date { margin: 1rem 0 1.5rem; font-size: 1.05rem; }
+.release-countdown { margin: 0 0 2rem; padding: 1rem 0; border-block: 1px solid var(--line); }
+.countdown-label, .countdown-released { margin: 0 0 .7rem; color: var(--violet); font-size: .78rem; font-weight: 600; text-transform: uppercase; }
+.countdown-released { margin: 0; font-family: "Shippori Mincho", serif; font-size: 1.3rem; text-transform: none; }
+.countdown-values { display: grid; grid-template-columns: repeat(4, minmax(3.4rem, 1fr)); gap: .75rem; }
+.countdown-values div { display: grid; gap: .1rem; }
+.countdown-values strong { font-family: "Shippori Mincho", serif; font-size: 1.65rem; font-variant-numeric: tabular-nums; line-height: 1; }
+.countdown-values span { color: rgba(23, 20, 29, .66); font-size: .68rem; text-transform: uppercase; }
+.platform-actions { display: grid; gap: 1.5rem; }
+.platform-action > p { margin: 0 0 .5rem; font-size: .75rem; font-weight: 600; text-transform: uppercase; }
 .primary-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .button { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 48px; padding: .7rem 1rem; border: 1px solid var(--ink); text-decoration: none; font-weight: 600; }
 .button-primary { background: var(--ink); color: #fff; }
+.button-disabled { cursor: not-allowed; opacity: .48; }
 .button:hover { background: var(--cyan); color: var(--ink); }
+.button-disabled:hover { background: var(--ink); color: #fff; }
 
 .about { display: grid; grid-template-columns: 1fr 1fr; gap: 10vw; padding: 7rem 0; border-top: 1px solid var(--line); }
 .about-copy p:last-child, .credits-heading p:last-child { max-width: 42rem; font-size: 1.12rem; }
@@ -101,7 +113,7 @@ footer p { margin: 0; }
   .language-nav { gap: .65rem; }
   .language-nav a { font-size: .7rem; }
   .hero { min-height: 88svh; }
-  .hero-image { object-position: 58% center; }
+  .hero-image { object-position: center; }
   .hero-shade { background: linear-gradient(0deg, rgba(13, 14, 21, .88), rgba(13, 14, 21, .05) 70%); }
   .hero-copy { padding-bottom: 6.5rem; }
   h1 { font-size: 3.2rem; }

@@ -54,9 +54,33 @@
         <p class="section-kicker">{{ .Params.release_label }}</p>
         <h2>{{ .Params.release_title }}</h2>
         <p class="release-date">{{ .Params.release_date }}</p>
-        <div class="primary-actions">
-          <a class="button button-primary" href="https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84" target="_blank" rel="noopener noreferrer">{{ .Params.listen_label }} <span aria-hidden="true">↗</span></a>
-          <a class="button button-quiet" href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer">{{ .Params.artist_label }} <span aria-hidden="true">↗</span></a>
+        <div class="release-countdown" data-release-countdown data-release-at="2026-10-09T00:00:00+08:00">
+          <p class="countdown-label" data-countdown-label>{{ .Params.countdown_label }}</p>
+          <div class="countdown-values" role="timer" aria-atomic="true">
+            <div><strong data-countdown-days>00</strong><span>{{ .Params.countdown_days }}</span></div>
+            <div><strong data-countdown-hours>00</strong><span>{{ .Params.countdown_hours }}</span></div>
+            <div><strong data-countdown-minutes>00</strong><span>{{ .Params.countdown_minutes }}</span></div>
+            <div><strong data-countdown-seconds>00</strong><span>{{ .Params.countdown_seconds }}</span></div>
+          </div>
+          <p class="countdown-released" data-countdown-released hidden>{{ .Params.released_label }}</p>
+        </div>
+        <div class="platform-actions">
+          <div class="platform-action">
+            <p>Spotify</p>
+            <div class="primary-actions">
+              <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ .Params.coming_soon_label }}</span>
+              <a class="button button-primary" href="https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.spotify_listen_label }} <span aria-hidden="true">↗</span></a>
+              <a class="button button-quiet" href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer">{{ .Params.spotify_artist_label }} <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <div class="platform-action">
+            <p>Apple Music</p>
+            <div class="primary-actions">
+              <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ .Params.coming_soon_label }}</span>
+              <a class="button button-primary" href="https://music.apple.com/album/6806763739" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.apple_listen_label }} <span aria-hidden="true">↗</span></a>
+              <a class="button button-quiet" href="https://music.apple.com/artist/6806738070" target="_blank" rel="noopener noreferrer">{{ .Params.apple_artist_label }} <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
