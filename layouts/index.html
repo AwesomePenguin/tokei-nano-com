@@ -18,6 +18,7 @@
   <meta name="twitter:description" content="{{ .Params.share_description }}">
   <meta name="twitter:image" content="{{ .Site.Params.image | absURL }}">
   <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <meta name="theme-color" content="#17141d">
   {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
   <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20260921-2">
