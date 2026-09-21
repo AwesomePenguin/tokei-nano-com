@@ -36,7 +36,18 @@
     var seconds = countdown.querySelector("[data-countdown-seconds]");
     var releaseLinks = document.querySelectorAll("[data-release-link]");
     var lockedButtons = document.querySelectorAll("[data-release-locked]");
+    var releaseContent = document.querySelectorAll("[data-release-content]");
+    var previewRequested = new URLSearchParams(window.location.search).get("release-preview") === "1";
+    var isLocalPreview = previewRequested && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
     var countdownTimer;
+
+    if (isLocalPreview) {
+      document.querySelectorAll(".language-nav a").forEach(function (link) {
+        var url = new URL(link.href);
+        url.searchParams.set("release-preview", "1");
+        link.href = url.toString();
+      });
+    }
 
     function pad(value) {
       return String(value).padStart(2, "0");
@@ -48,10 +59,19 @@
       releasedLabel.hidden = false;
       lockedButtons.forEach(function (button) { button.hidden = true; });
       releaseLinks.forEach(function (link) { link.hidden = false; });
+      releaseContent.forEach(function (section) {
+        section.hidden = false;
+        section.querySelectorAll(".reveal").forEach(function (element) { element.classList.add("is-visible"); });
+      });
       if (countdownTimer) window.clearInterval(countdownTimer);
     }
 
     function updateCountdown() {
+      if (countdown.getAttribute("data-release-preview") === "true" || isLocalPreview) {
+        unlockRelease();
+        return;
+      }
+
       var remaining = releaseAt - Date.now();
 
       if (remaining <= 0) {

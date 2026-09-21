@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ .Site.Language.Locale }}">
+<html lang="{{ .Site.Language.LanguageCode }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,9 +12,9 @@
   <meta property="og:url" content="{{ .Permalink }}">
   <link rel="canonical" href="{{ .Permalink }}">
   <meta name="theme-color" content="#17141d">
-  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">{{ end }}
-  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}">
-  <script src="{{ "js/site.js" | relURL }}" defer></script>
+  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20260921">
+  <script src="{{ "js/site.js" | relURL }}?v=20260921-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,7 +25,7 @@
     </a>
     <nav class="language-nav" aria-label="Language">
       {{ range .AllTranslations }}
-        <a href="{{ .RelPermalink }}" lang="{{ .Language.Locale }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+        <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a>
       {{ end }}
     </nav>
   </header>
@@ -62,7 +62,7 @@
         <p class="section-kicker">{{ .Params.release_label }}</p>
         <h2>{{ .Params.release_title }}</h2>
         <p class="release-date">{{ .Params.release_date }}</p>
-        <div class="release-countdown" data-release-countdown data-release-at="2026-10-09T00:00:00+08:00">
+        <div class="release-countdown" data-release-countdown data-release-at="2026-10-09T00:00:00+08:00" data-release-preview="{{ hugo.IsDevelopment }}">
           <p class="countdown-label" data-countdown-label>{{ .Params.countdown_label }}</p>
           <div class="countdown-values" role="timer" aria-atomic="true">
             <div><strong data-countdown-days>00</strong><span>{{ .Params.countdown_days }}</span></div>
@@ -90,6 +90,18 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="song-story" data-release-content hidden aria-labelledby="song-story-title">
+      <div class="song-story-heading reveal">
+        <p class="section-kicker">{{ .Params.song_story_kicker }}</p>
+        <h2 id="song-story-title">{{ .Params.song_story_title }}</h2>
+      </div>
+      <div class="song-story-copy reveal">
+        <p>{{ .Params.song_story_p1 }}</p>
+        <p>{{ .Params.song_story_p2 }}</p>
+        <p>{{ .Params.song_story_p3 }}</p>
       </div>
     </section>
 

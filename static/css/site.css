@@ -67,7 +67,7 @@ h2 { font-size: 2.5rem; }
 .intro { max-width: 34rem; margin: 1.5rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1.35rem; }
 .scroll-cue { position: absolute; z-index: 2; right: 5vw; bottom: 2rem; display: flex; gap: 1rem; align-items: center; color: #fff; font-size: .75rem; text-decoration: none; text-transform: uppercase; }
 
-.release, .about, .credits { width: min(90%, var(--max)); margin: 0 auto; }
+.release, .song-story, .about, .credits { width: min(90%, var(--max)); margin: 0 auto; }
 .release { display: grid; grid-template-columns: minmax(260px, 560px) 1fr; gap: 8vw; align-items: center; padding: 8rem 0; }
 .release-art { position: relative; }
 .release-art::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--red); z-index: -1; }
@@ -90,6 +90,11 @@ h2 { font-size: 2.5rem; }
 .button-disabled { cursor: not-allowed; opacity: .48; }
 .button:hover { background: var(--cyan); color: var(--ink); }
 .button-disabled:hover { background: var(--ink); color: #fff; }
+
+.song-story { display: grid; grid-template-columns: minmax(16rem, .7fr) 1.3fr; gap: 10vw; padding: 7rem 0; border-top: 1px solid var(--line); }
+.song-story-copy { max-width: 46rem; }
+.song-story-copy p { margin: 0; font-size: 1.12rem; }
+.song-story-copy p + p { margin-top: 1.4rem; }
 
 .about { display: grid; grid-template-columns: 1fr 1fr; gap: 10vw; padding: 7rem 0; border-top: 1px solid var(--line); }
 .about-copy p:last-child, .credits-heading p:last-child { max-width: 42rem; font-size: 1.12rem; }
@@ -121,7 +126,7 @@ footer p { margin: 0; }
   h2 { font-size: 2rem; }
   .intro { font-size: 1.05rem; }
   .scroll-cue { left: 5%; right: auto; bottom: 1.4rem; }
-  .release, .about, .credits { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 0; }
+  .release, .song-story, .about, .credits { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 0; }
   .release { width: min(84%, 560px); }
   .release h2 { font-size: 3rem; }
   .release-art::before { inset: .65rem -.65rem -.65rem .65rem; }
