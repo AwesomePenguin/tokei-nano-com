@@ -36,7 +36,9 @@
     var seconds = countdown.querySelector("[data-countdown-seconds]");
     var releaseLinks = document.querySelectorAll("[data-release-link]");
     var lockedButtons = document.querySelectorAll("[data-release-locked]");
+    var presaveLinks = document.querySelectorAll("[data-presave-link]");
     var releaseContent = document.querySelectorAll("[data-release-content]");
+    var shareButton = document.querySelector("[data-share-release]");
     var previewRequested = new URLSearchParams(window.location.search).get("release-preview") === "1";
     var isLocalPreview = previewRequested && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
     var countdownTimer;
@@ -53,12 +55,62 @@
       return String(value).padStart(2, "0");
     }
 
+    function copyShareContent(text, url) {
+      var content = text + "\n" + url;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(content);
+      }
+
+      var textArea = document.createElement("textarea");
+      textArea.value = content;
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+      return Promise.resolve();
+    }
+
+    function showCopiedLabel() {
+      var label = shareButton.querySelector("[data-share-label]");
+      label.textContent = shareButton.getAttribute("data-share-copied-label");
+      window.setTimeout(function () {
+        label.textContent = shareButton.getAttribute("data-share-default-label");
+      }, 1800);
+    }
+
+    if (shareButton) {
+      shareButton.addEventListener("click", async function () {
+        var shareData = {
+          title: shareButton.getAttribute("data-share-title"),
+          text: shareButton.getAttribute("data-share-text"),
+          url: shareButton.getAttribute("data-share-url")
+        };
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (error) {
+            if (error.name === "AbortError") return;
+          }
+        }
+
+        await copyShareContent(shareData.text, shareData.url);
+        showCopiedLabel();
+      });
+    }
+
     function unlockRelease() {
       countdownValues.hidden = true;
       countdownLabel.hidden = true;
       releasedLabel.hidden = false;
       lockedButtons.forEach(function (button) { button.hidden = true; });
+      presaveLinks.forEach(function (link) { link.hidden = true; });
       releaseLinks.forEach(function (link) { link.hidden = false; });
+      if (shareButton) shareButton.setAttribute("data-share-text", shareButton.getAttribute("data-share-released-text"));
       releaseContent.forEach(function (section) {
         section.hidden = false;
         section.querySelectorAll(".reveal").forEach(function (element) { element.classList.add("is-visible"); });
@@ -67,7 +119,7 @@
     }
 
     function updateCountdown() {
-      if (countdown.getAttribute("data-release-preview") === "true" || isLocalPreview) {
+      if (isLocalPreview) {
         unlockRelease();
         return;
       }
