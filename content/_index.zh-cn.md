@@ -36,5 +36,6 @@ credits_text: "時計奈野由 Si Hang Xie 制作，并通过独立厂牌 Lost R
 producer_label: "制作人"
 label_label: "独立厂牌"
 contact_label: "联系"
+ai_statement_label: "AI 与我们的创作"
 legal_note: "Lost Raven Records 是由 Si Hang Xie 运营的独立厂牌名义。"
 ---

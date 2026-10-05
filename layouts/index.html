@@ -21,7 +21,7 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <meta name="theme-color" content="#17141d">
   {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
-  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20260921-2">
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261005-1">
   <script src="{{ "js/site.js" | relURL }}?v=20260921-5" defer></script>
 </head>
 <body>
@@ -150,6 +150,7 @@
 
   <footer>
     <p>時計奈野 © 2026 Si Hang Xie</p>
+    <p data-release-link hidden><a href="{{ "ai/" | relLangURL }}">{{ .Params.ai_statement_label }}</a></p>
     <p>{{ .Params.legal_note }}</p>
   </footer>
 </body>

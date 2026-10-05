@@ -36,5 +36,6 @@ credits_text: "Tokei Nano is produced by Si Hang Xie and released through Lost R
 producer_label: "Producer"
 label_label: "Independent label"
 contact_label: "Contact"
+ai_statement_label: "AI & Our Creative Process"
 legal_note: "Lost Raven Records is an independent label imprint operated by Si Hang Xie."
 ---

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ .Title }} — {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ .Title }} — {{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Description }}">
+  <meta property="og:image" content="{{ .Site.Params.image | absURL }}">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1440">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }} — {{ .Site.Title }}">
+  <meta name="twitter:description" content="{{ .Description }}">
+  <meta name="twitter:image" content="{{ .Site.Params.image | absURL }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <meta name="theme-color" content="#17141d">
+  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261005-1">
+  <script src="{{ "js/site.js" | relURL }}?v=20260921-5" defer></script>
+</head>
+<body class="document-page">
+  <a class="skip-link" href="#main">{{ .Params.skip_label }}</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Params.home_label }}">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>時計奈野</span>
+    </a>
+    <nav class="language-nav" aria-label="Language">
+      {{ range .AllTranslations }}
+        <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a>
+      {{ end }}
+    </nav>
+  </header>
+
+  <main id="main" class="creative-statement">
+    <article aria-labelledby="statement-title">
+      <header class="statement-heading">
+        <p class="section-kicker">Tokei Nano</p>
+        <h1 id="statement-title">{{ .Title }}</h1>
+      </header>
+      <div class="statement-body">{{ .Content }}</div>
+      <div class="statement-meta">
+        <p>{{ .Params.updated_label }} <time datetime="{{ .Params.updated }}">{{ .Params.updated_display }}</time></p>
+        <a href="{{ .Site.Home.RelPermalink }}">{{ .Params.home_label }}</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <p>時計奈野 © 2026 Si Hang Xie</p>
+    <p>{{ .Site.Home.Params.legal_note }}</p>
+  </footer>
+</body>
+</html>

@@ -36,5 +36,6 @@ credits_text: "時計奈野は、Si Hang Xieがプロデュースし、Lost Rave
 producer_label: "Producer"
 label_label: "Independent label"
 contact_label: "Contact"
+ai_statement_label: "AIと私たちの創作について"
 legal_note: "Lost Raven Records is an independent label imprint operated by Si Hang Xie."
 ---
