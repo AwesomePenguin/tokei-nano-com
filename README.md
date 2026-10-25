@@ -36,6 +36,13 @@ pre-save links, and platform links are maintained in the work bundle, not copied
 into the homepage. Shared UI translations live in the homepage front matter;
 social links, production information, and contact details use the shared layout.
 Sharing a work always uses its permanent individual page URL.
+The homepage release block links to the localized Works index via "View all
+works"; this navigation does not change the share target. Social previews use
+the work's 1440px square JPEG cover, localized title/description, and Open Graph
+and Twitter Card tags (including image alternative text). The share button sends
+title, text, and URL via native sharing, or copies text and URL when unavailable;
+the receiving platform fetches the preview image from the shared page's tags,
+rather than receiving an attached image file.
 
 ### Adding a work
 

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { after, before, test } from "node:test";
@@ -63,6 +63,12 @@ test("all languages share the latest work's release data and introduction", () =
     );
     const prefix = language ? `${language}/` : "";
     assert.ok(home.includes(`data-share-url="https://tokeinano.com/${prefix}works/bohimei/"`));
+    assert.ok(home.includes(`class="work-back" href="/${prefix}works/"`));
+    assert.ok(home.includes({
+      "": "すべての作品を見る",
+      en: "View all works",
+      "zh-cn": "查看全部作品",
+    }[language]));
     assert.match(work, /data-release-at="2026-11-13T00:00:00"/);
     assert.match(work, /hyperfollow\/b17afa7\/TnSTHNMevQm/);
     assert.match(work, /href="https:\/\/www.youtube.com\/channel\/UC5Mh4QhLUjsADBSxrZg5r4Q"/);
@@ -118,6 +124,37 @@ test("localized SP3 copy and English title annotation appear on both surfaces", 
         }
       } else {
         assert.ok(page.includes(language === "zh-cn" ? "事前预约" : "事前予約"));
+      }
+    }
+  }
+});
+
+test("share targets have complete localized social metadata and existing JPEG artwork", () => {
+  for (const language of languages) {
+    for (const work of ["bohimei", "hello-world"]) {
+      const prefix = language ? `${language}/` : "";
+      const permalink = `https://tokeinano.com/${prefix}works/${work}/`;
+      const page = html(standard.destination, language, "works", work);
+      for (const property of ["og:title", "og:description", "og:image", "og:image:alt"]) {
+        assert.ok(new RegExp(`<meta property="${property}" content="[^"]+">`).test(page), property);
+      }
+      for (const name of ["twitter:title", "twitter:description", "twitter:image", "twitter:image:alt"]) {
+        assert.ok(new RegExp(`<meta name="${name}" content="[^"]+">`).test(page), name);
+      }
+      assert.ok(page.includes(`<meta property="og:url" content="${permalink}">`));
+      assert.ok(page.includes(`<link rel="canonical" href="${permalink}">`));
+      assert.ok(page.includes(`data-share-url="${permalink}"`));
+      assert.match(page, /twitter:card" content="summary_large_image"/);
+      assert.match(page, /og:image:type" content="image\/jpeg"/);
+      const image = page.match(/property="og:image" content="([^"]+)"/)[1];
+      const imageUrl = new URL(image);
+      assert.equal(imageUrl.origin, "https://tokeinano.com");
+      assert.match(imageUrl.pathname, /-1440.jpg$/);
+      const imagePath = path.join(standard.destination, ...imageUrl.pathname.split("/").filter(Boolean));
+      assert.ok(existsSync(imagePath));
+      assert.deepEqual([...readFileSync(imagePath).subarray(0, 3)], [0xff, 0xd8, 0xff]);
+      if (language === "en" && work === "bohimei") {
+        assert.match(page, /data-share-title="墓碑銘 — Bohimei — Epitaph —/);
       }
     }
   }

@@ -46,8 +46,8 @@
         {{ end }}
       </div>
       <div class="share-action">
-        <button class="button button-quiet" type="button" data-share-release data-share-title="{{ $work.Title }} — {{ $work.Site.Title }}" data-share-text="{{ $work.Params.share_pre_text }}" data-share-released-text="{{ $work.Params.share_post_text }}" data-share-url="{{ $work.Permalink }}" data-share-default-label="{{ $labels.share_label }}" data-share-copied-label="{{ $labels.share_copied_label }}"><span data-share-label>{{ $labels.share_label }}</span></button>
-        {{ if .home }}<a class="work-back" href="{{ $work.RelPermalink }}">{{ $labels.work_page_label }} →</a>{{ end }}
+        <button class="button button-quiet" type="button" data-share-release data-share-title="{{ $work.Title }}{{ with $work.Params.title_note }} — {{ . }}{{ end }} — {{ $work.Site.Title }}" data-share-text="{{ $work.Params.share_pre_text }}" data-share-released-text="{{ $work.Params.share_post_text }}" data-share-url="{{ $work.Permalink }}" data-share-default-label="{{ $labels.share_label }}" data-share-copied-label="{{ $labels.share_copied_label }}"><span data-share-label>{{ $labels.share_label }}</span></button>
+        {{ if .home }}<a class="work-back" href="{{ "works/" | relLangURL }}">{{ $labels.all_works_label }} →</a>{{ end }}
       </div>
     </div>
   </section>

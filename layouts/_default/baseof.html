@@ -15,6 +15,8 @@
   <meta property="og:title" content="{{ $displayTitle }} — {{ .Site.Title }}">
   <meta property="og:description" content="{{ $work.Description }}">
   <meta property="og:image" content="{{ $image | absURL }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="{{ $work.Params.cover_alt | default $work.Title }}">
   <meta property="og:image:width" content="1440">
   <meta property="og:image:height" content="1440">
   <meta property="og:url" content="{{ .Permalink }}">
@@ -23,6 +25,7 @@
   <meta name="twitter:title" content="{{ $displayTitle }} — {{ .Site.Title }}">
   <meta name="twitter:description" content="{{ $work.Description }}">
   <meta name="twitter:image" content="{{ $image | absURL }}">
+  <meta name="twitter:image:alt" content="{{ $work.Params.cover_alt | default $work.Title }}">
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <meta name="theme-color" content="#17141d">
