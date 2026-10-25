@@ -42,6 +42,8 @@ img { display: block; max-width: 100%; }
 .site-header.is-scrolled { background: rgba(243, 240, 235, .96); color: var(--ink); border-color: var(--line); }
 .brand { display: inline-flex; gap: .6rem; align-items: center; font-family: "Shippori Mincho", serif; font-weight: 700; text-decoration: none; }
 .brand-mark { color: var(--gold); }
+.works-link { margin-left: auto; margin-right: 1.5rem; font-size: .78rem; text-decoration: none; }
+.works-link:hover { text-decoration: underline; text-underline-offset: .3rem; }
 .language-nav { display: flex; gap: 1rem; font-size: .78rem; }
 .language-nav a { text-decoration: none; opacity: .65; }
 .language-nav a:hover, .language-nav a[aria-current="page"] { opacity: 1; text-decoration: underline; text-underline-offset: .3rem; }
@@ -57,17 +59,17 @@ img { display: block; max-width: 100%; }
 }
 .hero-image, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
 .hero-image { object-fit: cover; object-position: center; }
-.hero-shade { background: linear-gradient(90deg, rgba(13, 14, 21, .82) 0%, rgba(13, 14, 21, .38) 35%, rgba(13, 14, 21, .04) 66%), linear-gradient(0deg, rgba(13, 14, 21, .66), transparent 50%); }
+.hero-shade { background: linear-gradient(90deg, rgba(13, 14, 21, .76) 0%, rgba(13, 14, 21, .45) 38%, rgba(13, 14, 21, .08) 72%), linear-gradient(0deg, rgba(13, 14, 21, .38), transparent 55%); }
 .hero-copy { position: relative; z-index: 2; width: min(90%, var(--max)); margin: 0 auto; padding: 0 0 13vh; }
 .eyebrow, .section-kicker { margin: 0 0 .9rem; color: var(--cyan); font-size: .78rem; font-weight: 600; text-transform: uppercase; }
 h1, h2 { margin: 0; font-family: "Shippori Mincho", serif; font-weight: 600; line-height: 1.15; }
 h1 { max-width: 9ch; font-size: 4.8rem; }
 h2 { font-size: 2.5rem; }
-.romanized { margin: .25rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1.1rem; }
+.hero-artist { margin: .5rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1rem; }
 .intro { max-width: 34rem; margin: 1.5rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1.35rem; }
 .scroll-cue { position: absolute; z-index: 2; right: 5vw; bottom: 2rem; display: flex; gap: 1rem; align-items: center; color: #fff; font-size: .75rem; text-decoration: none; text-transform: uppercase; }
 
-.release, .song-story, .about, .credits { width: min(90%, var(--max)); margin: 0 auto; }
+.release, .song-story, .about, .credits, .works-page { width: min(90%, var(--max)); margin: 0 auto; }
 .release { display: grid; grid-template-columns: minmax(260px, 560px) 1fr; gap: 8vw; align-items: center; padding: 8rem 0; }
 .release-art { position: relative; }
 .release-art::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--red); z-index: -1; }
@@ -103,6 +105,32 @@ h2 { font-size: 2.5rem; }
 .social-links a { display: flex; justify-content: space-between; padding: 1.25rem 0; border-bottom: 1px solid var(--line); text-decoration: none; }
 .social-links a:hover { color: var(--violet); }
 
+.works-page { min-height: 75vh; padding: 9rem 0 6rem; }
+.works-heading { max-width: 48rem; margin-bottom: 3rem; }
+.works-heading .section-kicker { color: var(--violet); }
+.works-heading h1 { max-width: none; font-size: clamp(2.5rem, 6vw, 4rem); }
+.works-heading p:last-child { font-size: 1.1rem; }
+.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 2rem; }
+.work-card { display: block; text-decoration: none; }
+.work-card-image { overflow: hidden; background: #ddd8d2; }
+.work-card-image img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .45s ease; }
+.work-card:hover img { transform: scale(1.035); }
+.work-card h2 { margin-top: 1.25rem; font-size: 1.8rem; }
+.work-card-date { margin: .35rem 0; color: var(--violet); font-size: .8rem; }
+.work-card-description { margin: 0; }
+.work-back { display: inline-block; margin-top: 2rem; color: var(--violet); }
+.work-detail { width: min(90%, 900px); margin: 0 auto; padding: 9rem 0 6rem; }
+.work-detail-heading { margin-bottom: 2.5rem; }
+.work-detail-heading .section-kicker { color: var(--violet); }
+.work-detail-heading h1 { max-width: none; font-size: clamp(2.5rem, 7vw, 5rem); }
+.work-detail-date { margin: 1rem 0 0; }
+.work-detail-cover { max-width: 680px; margin: 0 auto 3rem; }
+.work-detail-cover img { width: 100%; height: auto; }
+.work-detail-body { max-width: 680px; margin: 0 auto; font-size: 1.08rem; }
+.work-detail-body h2 { margin: 2.5rem 0 .75rem; font-size: 1.7rem; }
+.work-platform-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+.work-platform-links .button { width: auto; }
+
 .credits { display: grid; grid-template-columns: 1fr 1fr; gap: 10vw; padding: 7rem 0; border-top: 1px solid var(--line); }
 .credit-list { margin: 0; }
 .credit-list div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
@@ -112,6 +140,7 @@ footer { display: flex; justify-content: space-between; gap: 2rem; padding: 2rem
 footer p { margin: 0; }
 
 .document-page .site-header { background: var(--paper); color: var(--ink); border-color: var(--line); }
+.document-page .works-link { color: var(--ink); }
 .creative-statement { width: min(90%, 760px); margin: 0 auto; padding: 8rem 0 5rem; }
 .statement-heading { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
 .statement-heading .section-kicker { color: var(--violet); }
@@ -133,7 +162,7 @@ footer p { margin: 0; }
   .language-nav a { font-size: .7rem; }
   .hero { min-height: 88svh; }
   .hero-image { object-position: center; }
-  .hero-shade { background: linear-gradient(0deg, rgba(13, 14, 21, .88), rgba(13, 14, 21, .05) 70%); }
+  .hero-shade { background: linear-gradient(0deg, rgba(13, 14, 21, .84), rgba(13, 14, 21, .18) 72%); }
   .hero-copy { padding-bottom: 6.5rem; }
   h1 { font-size: 3.2rem; }
   h2 { font-size: 2rem; }
@@ -144,6 +173,11 @@ footer p { margin: 0; }
   .release h2 { font-size: 3rem; }
   .release-art::before { inset: .65rem -.65rem -.65rem .65rem; }
   .button { width: 100%; }
+  .works-link { margin-right: .75rem; font-size: .68rem; }
+  .language-nav { gap: .55rem; }
+  .language-nav a { font-size: .65rem; }
+  .works-page, .work-detail { padding-top: 7rem; }
+  .work-platform-links .button { width: 100%; }
   .credit-list div { grid-template-columns: 1fr; gap: .2rem; }
   footer { flex-direction: column; gap: .5rem; }
 }

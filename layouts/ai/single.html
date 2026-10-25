@@ -21,8 +21,8 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <meta name="theme-color" content="#17141d">
   {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
-  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261005-1">
-  <script src="{{ "js/site.js" | relURL }}?v=20260921-5" defer></script>
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261025-1">
+  <script src="{{ "js/site.js" | relURL }}?v=20261025-1" defer></script>
 </head>
 <body class="document-page">
   <a class="skip-link" href="#main">{{ .Params.skip_label }}</a>
@@ -31,6 +31,7 @@
       <span class="brand-mark" aria-hidden="true">✦</span>
       <span>時計奈野</span>
     </a>
+    <a class="works-link" href="{{ "works/" | relLangURL }}">{{ .Params.works_label }}</a>
     <nav class="language-nav" aria-label="Language">
       {{ range .AllTranslations }}
         <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a>

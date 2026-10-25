@@ -21,8 +21,8 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   <meta name="theme-color" content="#17141d">
   {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
-  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261005-1">
-  <script src="{{ "js/site.js" | relURL }}?v=20260921-5" defer></script>
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261025-1">
+  <script src="{{ "js/site.js" | relURL }}?v=20261025-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -31,6 +31,7 @@
       <span class="brand-mark" aria-hidden="true">✦</span>
       <span>時計奈野</span>
     </a>
+    <a class="works-link" href="{{ "works/" | relLangURL }}">{{ .Params.works_label }}</a>
     <nav class="language-nav" aria-label="Language">
       {{ range .AllTranslations }}
         <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a>
@@ -41,15 +42,15 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <picture>
-        <source type="image/avif" srcset="{{ "images/tokei-nano-hero-960.avif" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.avif" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.avif" | relURL }} 2400w" sizes="100vw">
-        <source type="image/webp" srcset="{{ "images/tokei-nano-hero-960.webp" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.webp" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.webp" | relURL }} 2400w" sizes="100vw">
-        <img class="hero-image" src="{{ "images/tokei-nano-hero-1600.jpg" | relURL }}" srcset="{{ "images/tokei-nano-hero-960.jpg" | relURL }} 960w, {{ "images/tokei-nano-hero-1600.jpg" | relURL }} 1600w, {{ "images/tokei-nano-hero-2400.jpg" | relURL }} 2400w" sizes="100vw" width="2400" height="1018" alt="時計奈野が夕暮れの屋上でアコースティックギターを演奏している" decoding="async" fetchpriority="high">
+        <source type="image/avif" srcset="{{ "images/sp3-hero-960.avif" | relURL }} 960w, {{ "images/sp3-hero-1600.avif" | relURL }} 1600w, {{ "images/sp3-hero-2400.avif" | relURL }} 2400w" sizes="100vw">
+        <source type="image/webp" srcset="{{ "images/sp3-hero-960.webp" | relURL }} 960w, {{ "images/sp3-hero-1600.webp" | relURL }} 1600w, {{ "images/sp3-hero-2400.webp" | relURL }} 2400w" sizes="100vw">
+        <img class="hero-image" src="{{ "images/sp3-hero-1600.jpg" | relURL }}" srcset="{{ "images/sp3-hero-960.jpg" | relURL }} 960w, {{ "images/sp3-hero-1600.jpg" | relURL }} 1600w, {{ "images/sp3-hero-2400.jpg" | relURL }} 2400w" sizes="100vw" width="2660" height="1140" alt="{{ .Params.hero_image_alt }}" decoding="async" fetchpriority="high">
       </picture>
       <div class="hero-shade"></div>
       <div class="hero-copy reveal">
         <p class="eyebrow">{{ .Params.eyebrow }}</p>
-        <h1 id="hero-title">{{ .Title }}</h1>
-        {{ if ne .Language.Lang "en" }}<p class="romanized">Tokei Nano</p>{{ end }}
+        <h1 id="hero-title">{{ .Params.release_title }}</h1>
+        <p class="hero-artist">{{ .Params.hero_artist }}</p>
         <p class="intro">{{ .Params.intro }}</p>
       </div>
       <a class="scroll-cue" href="#release" aria-label="{{ .Params.release_title }}">
@@ -61,16 +62,16 @@
     <section class="release" id="release">
       <div class="release-art reveal">
         <picture>
-          <source type="image/avif" srcset="{{ "images/hello-world-cover-480.avif" | relURL }} 480w, {{ "images/hello-world-cover-960.avif" | relURL }} 960w, {{ "images/hello-world-cover-1440.avif" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
-          <source type="image/webp" srcset="{{ "images/hello-world-cover-480.webp" | relURL }} 480w, {{ "images/hello-world-cover-960.webp" | relURL }} 960w, {{ "images/hello-world-cover-1440.webp" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
-          <img src="{{ "images/hello-world-cover-960.jpg" | relURL }}" srcset="{{ "images/hello-world-cover-480.jpg" | relURL }} 480w, {{ "images/hello-world-cover-960.jpg" | relURL }} 960w, {{ "images/hello-world-cover-1440.jpg" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px" width="1440" height="1440" alt="hello world cover art" loading="lazy" decoding="async">
+          <source type="image/avif" srcset="{{ "images/sp3-cover-480.avif" | relURL }} 480w, {{ "images/sp3-cover-960.avif" | relURL }} 960w, {{ "images/sp3-cover-1440.avif" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
+          <source type="image/webp" srcset="{{ "images/sp3-cover-480.webp" | relURL }} 480w, {{ "images/sp3-cover-960.webp" | relURL }} 960w, {{ "images/sp3-cover-1440.webp" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
+          <img src="{{ "images/sp3-cover-960.jpg" | relURL }}" srcset="{{ "images/sp3-cover-480.jpg" | relURL }} 480w, {{ "images/sp3-cover-960.jpg" | relURL }} 960w, {{ "images/sp3-cover-1440.jpg" | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px" width="1440" height="1440" alt="{{ .Params.release_image_alt }}" loading="lazy" decoding="async">
         </picture>
       </div>
       <div class="release-copy reveal">
         <p class="section-kicker">{{ .Params.release_label }}</p>
         <h2>{{ .Params.release_title }}</h2>
         <p class="release-date">{{ .Params.release_date }}</p>
-        <div class="release-countdown" data-release-countdown data-release-at="2026-10-09T00:00:00+08:00">
+        <div class="release-countdown" data-release-countdown data-release-at="2026-11-13T00:00:00">
           <p class="countdown-label" data-countdown-label>{{ .Params.countdown_label }}</p>
           <div class="countdown-values" role="timer" aria-atomic="true">
             <div><strong data-countdown-days>00</strong><span>{{ .Params.countdown_days }}</span></div>
@@ -85,8 +86,8 @@
             <p>Spotify</p>
             <div class="primary-actions">
               <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ .Params.coming_soon_label }}</span>
-              <a class="button button-quiet" href="https://distrokid.com/hyperfollow/6595fff/hello-world" target="_blank" rel="noopener noreferrer" data-presave-link>{{ .Params.presave_label }} <span aria-hidden="true">↗</span></a>
-              <a class="button button-primary" href="https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.spotify_listen_label }} <span aria-hidden="true">↗</span></a>
+              <a class="button button-quiet" href="https://distrokid.com/hyperfollow/b17afa7/TnSTHNMevQm" target="_blank" rel="noopener noreferrer" data-presave-link>{{ .Params.presave_label }} <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary" href="https://open.spotify.com/album/6gbzHtt5uCd9kuYrTQImFf" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.spotify_listen_label }} <span aria-hidden="true">↗</span></a>
               <a class="button button-quiet" href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer">{{ .Params.spotify_artist_label }} <span aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -94,8 +95,15 @@
             <p>Apple Music</p>
             <div class="primary-actions">
               <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ .Params.coming_soon_label }}</span>
-              <a class="button button-primary" href="https://music.apple.com/album/6806763739" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.apple_listen_label }} <span aria-hidden="true">↗</span></a>
+              <a class="button button-primary" href="https://music.apple.com/album/6823264356" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.apple_listen_label }} <span aria-hidden="true">↗</span></a>
               <a class="button button-quiet" href="https://music.apple.com/artist/6806738070" target="_blank" rel="noopener noreferrer">{{ .Params.apple_artist_label }} <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <div class="platform-action">
+            <p>YouTube Music</p>
+            <div class="primary-actions">
+              <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ .Params.coming_soon_label }}</span>
+              <a class="button button-primary" href="https://music.youtube.com/playlist?list=OLAK5uy_n4JH-ik0MjPr3pC9UZcNeggDtriKdVQ8c" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ .Params.youtube_music_label }} <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
@@ -107,7 +115,7 @@
       </div>
     </section>
 
-    <section class="song-story" data-release-content hidden aria-labelledby="song-story-title">
+    <section class="song-story" aria-labelledby="song-story-title">
       <div class="song-story-heading reveal">
         <p class="section-kicker">{{ .Params.song_story_kicker }}</p>
         <h2 id="song-story-title">{{ .Params.song_story_title }}</h2>
@@ -129,6 +137,7 @@
         <a href="https://www.youtube.com/@tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ .Params.youtube_label }}</span><span aria-hidden="true">↗</span></a>
         <a href="https://www.instagram.com/tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ .Params.instagram_label }}</span><span aria-hidden="true">↗</span></a>
         <a href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span aria-hidden="true">↗</span></a>
+        <a href="{{ "works/" | relLangURL }}"><span>{{ .Params.works_label }}</span><span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
