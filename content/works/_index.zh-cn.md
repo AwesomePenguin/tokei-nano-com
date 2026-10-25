@@ -1,7 +1,6 @@
 ---
-title: "过往作品"
-description: "查看時計奈野已发行的音乐作品。"
+title: "作品"
+description: "从即将发行的新作，到已经与你相遇的歌曲。"
 skip_label: "跳至正文"
-works_label: "过往作品"
 home_label: "主页"
 ---

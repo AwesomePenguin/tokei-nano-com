@@ -137,7 +137,7 @@
       seconds.textContent = pad(Math.floor((remaining % 60000) / 1000));
     }
 
-    updateCountdown();
     countdownTimer = window.setInterval(updateCountdown, 1000);
+    updateCountdown();
   }
 })();

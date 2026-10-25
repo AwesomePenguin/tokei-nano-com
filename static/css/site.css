@@ -66,6 +66,7 @@ h1, h2 { margin: 0; font-family: "Shippori Mincho", serif; font-weight: 600; lin
 h1 { max-width: 9ch; font-size: 4.8rem; }
 h2 { font-size: 2.5rem; }
 .hero-artist { margin: .5rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1rem; }
+.work-title-note { margin: .6rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1.15rem; }
 .intro { max-width: 34rem; margin: 1.5rem 0 0; font-family: "Shippori Mincho", serif; font-size: 1.35rem; }
 .scroll-cue { position: absolute; z-index: 2; right: 5vw; bottom: 2rem; display: flex; gap: 1rem; align-items: center; color: #fff; font-size: .75rem; text-decoration: none; text-transform: uppercase; }
 
@@ -75,7 +76,7 @@ h2 { font-size: 2.5rem; }
 .release-art::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--red); z-index: -1; }
 .release-art picture { display: block; width: 100%; }
 .release-art img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
-.release h2 { font-size: 4rem; }
+.release h1, .release h2 { max-width: none; font-size: 4rem; }
 .release-date { margin: 1rem 0 1.5rem; font-size: 1.05rem; }
 .release-countdown { margin: 0 0 2rem; padding: 1rem 0; border-block: 1px solid var(--line); }
 .countdown-label, .countdown-released { margin: 0 0 .7rem; color: var(--violet); font-size: .78rem; font-weight: 600; text-transform: uppercase; }
@@ -110,26 +111,17 @@ h2 { font-size: 2.5rem; }
 .works-heading .section-kicker { color: var(--violet); }
 .works-heading h1 { max-width: none; font-size: clamp(2.5rem, 6vw, 4rem); }
 .works-heading p:last-child { font-size: 1.1rem; }
-.work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 2rem; }
+.work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
 .work-card { display: block; text-decoration: none; }
 .work-card-image { overflow: hidden; background: #ddd8d2; }
-.work-card-image img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .45s ease; }
+.work-card-image img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; transition: transform .45s ease; }
 .work-card:hover img { transform: scale(1.035); }
 .work-card h2 { margin-top: 1.25rem; font-size: 1.8rem; }
 .work-card-date { margin: .35rem 0; color: var(--violet); font-size: .8rem; }
-.work-card-description { margin: 0; }
 .work-back { display: inline-block; margin-top: 2rem; color: var(--violet); }
-.work-detail { width: min(90%, 900px); margin: 0 auto; padding: 9rem 0 6rem; }
-.work-detail-heading { margin-bottom: 2.5rem; }
-.work-detail-heading .section-kicker { color: var(--violet); }
-.work-detail-heading h1 { max-width: none; font-size: clamp(2.5rem, 7vw, 5rem); }
-.work-detail-date { margin: 1rem 0 0; }
-.work-detail-cover { max-width: 680px; margin: 0 auto 3rem; }
-.work-detail-cover img { width: 100%; height: auto; }
-.work-detail-body { max-width: 680px; margin: 0 auto; font-size: 1.08rem; }
-.work-detail-body h2 { margin: 2.5rem 0 .75rem; font-size: 1.7rem; }
-.work-platform-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-.work-platform-links .button { width: auto; }
+.work-page .work-content { padding-top: 4.25rem; }
+.work-navigation { width: min(90%, var(--max)); margin: 0 auto 3rem; }
+.share-action .work-back { margin-left: 1rem; }
 
 .credits { display: grid; grid-template-columns: 1fr 1fr; gap: 10vw; padding: 7rem 0; border-top: 1px solid var(--line); }
 .credit-list { margin: 0; }
@@ -170,14 +162,15 @@ footer p { margin: 0; }
   .scroll-cue { left: 5%; right: auto; bottom: 1.4rem; }
   .release, .song-story, .about, .credits { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 0; }
   .release { width: min(84%, 560px); }
-  .release h2 { font-size: 3rem; }
+  .release h1, .release h2 { font-size: 3rem; }
   .release-art::before { inset: .65rem -.65rem -.65rem .65rem; }
   .button { width: 100%; }
   .works-link { margin-right: .75rem; font-size: .68rem; }
   .language-nav { gap: .55rem; }
   .language-nav a { font-size: .65rem; }
-  .works-page, .work-detail { padding-top: 7rem; }
-  .work-platform-links .button { width: 100%; }
+  .works-page { padding-top: 7rem; }
+  .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .work-card h2 { font-size: 1.3rem; }
   .credit-list div { grid-template-columns: 1fr; gap: .2rem; }
   footer { flex-direction: column; gap: .5rem; }
 }

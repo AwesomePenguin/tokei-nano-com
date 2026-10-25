@@ -1,0 +1,12 @@
+{{ $works := where .Site.RegularPages "Section" "works" }}
+{{ $work := index (sort $works "Params.release_at" "desc") 0 }}
+{{ with .Site.Params.featured_work }}
+  {{ $matches := where $works "Params.work_id" . }}
+  {{ if ne (len $matches) 1 }}
+    {{ errorf "featured_work %q must match exactly one published work in %s" . $.Language.Lang }}
+  {{ else }}
+    {{ $work = index $matches 0 }}
+  {{ end }}
+{{ end }}
+{{ if not $work }}{{ errorf "No published works found for %s" .Language.Lang }}{{ end }}
+{{ return $work }}

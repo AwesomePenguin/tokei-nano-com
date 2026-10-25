@@ -1,7 +1,6 @@
 ---
-title: "過去の作品"
-description: "時計奈野がこれまでに発表した作品をご覧いただけます。"
+title: "作品一覧"
+description: "リリース予定の新作から、これまでに発表した作品まで。"
 skip_label: "本文へ移動"
-works_label: "過去の作品"
 home_label: "ホーム"
 ---

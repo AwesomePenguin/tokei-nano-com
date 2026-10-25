@@ -1,0 +1,64 @@
+{{ $work := .work }}
+{{ $labels := $work.Site.Home.Params }}
+<div class="work-content" data-work="{{ $work.Params.work_id }}">
+  <section class="release" id="release" aria-labelledby="release-title">
+    <div class="release-art reveal">
+      <picture>
+        {{ range slice "avif" "webp" }}
+          <source type="image/{{ . }}" srcset="{{ printf "images/%s-480.%s" $work.Params.cover_base . | relURL }} 480w, {{ printf "images/%s-960.%s" $work.Params.cover_base . | relURL }} 960w, {{ printf "images/%s-1440.%s" $work.Params.cover_base . | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px">
+        {{ end }}
+        <img src="{{ printf "images/%s-960.jpg" $work.Params.cover_base | relURL }}" srcset="{{ printf "images/%s-480.jpg" $work.Params.cover_base | relURL }} 480w, {{ printf "images/%s-960.jpg" $work.Params.cover_base | relURL }} 960w, {{ printf "images/%s-1440.jpg" $work.Params.cover_base | relURL }} 1440w" sizes="(max-width: 760px) 84vw, 560px" width="1440" height="1440" alt="{{ $work.Params.cover_alt }}" decoding="async" {{ if .home }}loading="lazy"{{ else }}fetchpriority="high"{{ end }}>
+      </picture>
+    </div>
+    <div class="release-copy reveal">
+      <p class="section-kicker">{{ $work.Params.release_label }}</p>
+      {{ if .home }}<h2 id="release-title">{{ $work.Title }}</h2>{{ else }}<h1 id="release-title">{{ $work.Title }}</h1>{{ end }}
+      {{ with $work.Params.title_note }}<p class="work-title-note">{{ . }}</p>{{ end }}
+      <p class="release-date">{{ $work.Params.release_date }}</p>
+      <div class="release-countdown" data-release-countdown data-release-at="{{ $work.Params.release_at }}">
+        <p class="countdown-label" data-countdown-label>{{ $labels.countdown_label }}</p>
+        <div class="countdown-values" role="timer" aria-atomic="true">
+          <div><strong data-countdown-days>00</strong><span>{{ $labels.countdown_days }}</span></div>
+          <div><strong data-countdown-hours>00</strong><span>{{ $labels.countdown_hours }}</span></div>
+          <div><strong data-countdown-minutes>00</strong><span>{{ $labels.countdown_minutes }}</span></div>
+          <div><strong data-countdown-seconds>00</strong><span>{{ $labels.countdown_seconds }}</span></div>
+        </div>
+        <p class="countdown-released" data-countdown-released hidden>{{ $labels.released_label }}</p>
+      </div>
+      <div class="platform-actions">
+        {{ with $work.Params.presave_url }}
+          <a class="button button-primary" href="{{ . }}" target="_blank" rel="noopener noreferrer" data-presave-link>{{ $labels.presave_label }} <span aria-hidden="true">↗</span></a>
+        {{ end }}
+        {{ range $work.Params.platforms }}
+          {{ $platform := . }}
+          <div class="platform-action">
+            <p>{{ .name }}</p>
+            <div class="primary-actions">
+              {{ if .listen_url }}
+                <span class="button button-primary button-disabled" aria-disabled="true" data-release-locked>{{ $labels.coming_soon_label }}</span>
+                <a class="button button-primary" href="{{ .listen_url }}" target="_blank" rel="noopener noreferrer" data-release-link hidden>{{ index $labels .listen_label }} <span aria-hidden="true">↗</span></a>
+              {{ end }}
+              {{ with .artist_url }}
+                <a class="button button-quiet" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ index $labels $platform.artist_label }} <span aria-hidden="true">↗</span></a>
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
+      </div>
+      <div class="share-action">
+        <button class="button button-quiet" type="button" data-share-release data-share-title="{{ $work.Title }} — {{ $work.Site.Title }}" data-share-text="{{ $work.Params.share_pre_text }}" data-share-released-text="{{ $work.Params.share_post_text }}" data-share-url="{{ $work.Permalink }}" data-share-default-label="{{ $labels.share_label }}" data-share-copied-label="{{ $labels.share_copied_label }}"><span data-share-label>{{ $labels.share_label }}</span></button>
+        {{ if .home }}<a class="work-back" href="{{ $work.RelPermalink }}">{{ $labels.work_page_label }} →</a>{{ end }}
+      </div>
+    </div>
+  </section>
+  <section class="song-story" aria-labelledby="song-story-title">
+    <div class="song-story-heading reveal">
+      <p class="section-kicker">{{ $labels.song_story_kicker }}</p>
+      <h2 id="song-story-title">{{ $work.Params.story_title }}</h2>
+    </div>
+    <div class="song-story-copy reveal">
+      <p>{{ $work.Description }}</p>
+      {{ $work.Content }}
+    </div>
+  </section>
+</div>

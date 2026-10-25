@@ -2,20 +2,32 @@
 title: "hello world"
 description: "時計奈野のデビューシングル。別れを告げ、もう一度歩き出し、過去のすべてを抱えて進む歌。"
 date: 2026-10-09
+work_id: "hello-world"
+release_at: "2026-10-09T00:00:00+08:00"
 release_date: "2026年10月9日"
-artist: "時計奈野"
-skip_label: "本文へ移動"
-works_label: "過去の作品"
-home_label: "ホーム"
 release_label: "デビューシングル"
 cover: "images/hello-world-cover-1440.jpg"
+cover_base: "hello-world-cover"
 cover_alt: "hello worldのジャケット"
-spotify_label: "Spotifyで聴く"
-apple_label: "Apple Musicで聴く"
-youtube_label: "YouTube Official"
-spotify_url: "https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84"
-apple_url: "https://music.apple.com/album/6806763739"
-youtube_url: "https://www.youtube.com/@tokei_nano_official"
+story_title: "「hello world」について"
+hero_base: "tokei-nano-hero"
+hero_alt: "夕暮れの屋上でアコースティックギターを演奏する時計奈野"
+hero_width: 2400
+hero_height: 1018
+hero_eyebrow: "デビューシングル · 2026年10月9日"
+hero_intro: "世界へ、私の声を届けます。"
+share_pre_text: "時計奈野 1st single「hello world」— 2026年10月9日リリース。"
+share_post_text: "時計奈野 1st single「hello world」配信中。"
+platforms:
+  - name: "Spotify"
+    listen_url: "https://open.spotify.com/album/4oVGEkeK2NIf6gkYfdeK84"
+    listen_label: "spotify_listen_label"
+  - name: "Apple Music"
+    listen_url: "https://music.apple.com/album/6806763739"
+    listen_label: "apple_listen_label"
+  - name: "YouTube"
+    artist_url: "https://www.youtube.com/@tokei_nano_official"
+    artist_label: "youtube_label"
 ---
 
 サビで何度も叫ぶ「さよなら」。でもここでは、別れは出会いの始まりでもあります。さよならと出会いは、同じ扉の表と裏。

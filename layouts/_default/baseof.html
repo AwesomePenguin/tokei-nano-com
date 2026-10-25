@@ -1,0 +1,80 @@
+{{ $work := . }}
+{{ if .IsHome }}{{ $work = partial "current-work.html" . }}{{ end }}
+{{ $labels := .Site.Home.Params }}
+{{ $image := $work.Params.cover | default .Site.Params.image }}
+{{ $displayTitle := $work.Title }}
+{{ with $work.Params.title_note }}{{ $displayTitle = printf "%s — %s" $work.Title . }}{{ end }}
+<!doctype html>
+<html lang="{{ .Site.Language.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ $displayTitle }} — {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ $work.Description }}">
+  <meta property="og:type" content="{{ if eq .Kind "page" }}music.song{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ $displayTitle }} — {{ .Site.Title }}">
+  <meta property="og:description" content="{{ $work.Description }}">
+  <meta property="og:image" content="{{ $image | absURL }}">
+  <meta property="og:image:width" content="1440">
+  <meta property="og:image:height" content="1440">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $displayTitle }} — {{ .Site.Title }}">
+  <meta name="twitter:description" content="{{ $work.Description }}">
+  <meta name="twitter:image" content="{{ $image | absURL }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <meta name="theme-color" content="#17141d">
+  {{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
+  <link rel="stylesheet" href="{{ "css/site.css" | relURL }}?v=20261025-2">
+  <script src="{{ "js/site.js" | relURL }}?v=20261025-2" defer></script>
+</head>
+<body{{ if not .IsHome }} class="document-page{{ if eq .Kind "page" }} work-page{{ end }}"{{ end }}>
+  <a class="skip-link" href="#main">{{ $labels.skip_label }}</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="{{ .Site.Home.RelPermalink }}" aria-label="{{ .Site.Title }} home">
+      <span class="brand-mark" aria-hidden="true">✦</span><span>時計奈野</span>
+    </a>
+    <a class="works-link" href="{{ "works/" | relLangURL }}"{{ if and (eq .Section "works") (eq .Kind "section") }} aria-current="page"{{ end }}>{{ $labels.works_label }}</a>
+    <nav class="language-nav" aria-label="Language">
+      {{ range .AllTranslations }}
+        <a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode }}"{{ if eq $.Language.Lang .Language.Lang }} aria-current="page"{{ end }}>{{ .Language.LanguageName }}</a>
+      {{ end }}
+    </nav>
+  </header>
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+    {{ if not (and (eq .Section "works") (eq .Kind "section")) }}
+    <section class="about">
+      <div class="about-copy reveal">
+        <p class="section-kicker">Tokei Nano</p>
+        <h2>{{ $labels.social_title }}</h2>
+      </div>
+      <div class="social-links reveal" aria-label="{{ $labels.social_title }}">
+        <a href="https://www.youtube.com/@tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ $labels.youtube_label }}</span><span aria-hidden="true">↗</span></a>
+        <a href="https://www.instagram.com/tokei_nano_official" target="_blank" rel="noopener noreferrer"><span>{{ $labels.instagram_label }}</span><span aria-hidden="true">↗</span></a>
+        <a href="https://open.spotify.com/artist/5iOndV6YjFAgZsz0mfmzTF" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    <section class="credits" id="credits">
+      <div class="credits-heading reveal">
+        <p class="section-kicker">Credits</p>
+        <h2>{{ $labels.credits_title }}</h2>
+        <p>{{ $labels.credits_text }}</p>
+      </div>
+      <dl class="credit-list reveal">
+        <div><dt>{{ $labels.producer_label }}</dt><dd>Si Hang Xie</dd></div>
+        <div><dt>{{ $labels.label_label }}</dt><dd><a href="https://lost-raven.com/" rel="me">Lost Raven Records ↗</a></dd></div>
+        <div><dt>{{ $labels.contact_label }}</dt><dd><a href="mailto:contact@tokeinano.com">contact@tokeinano.com</a> <a href="mailto:contact@sihangxie.com">contact@sihangxie.com</a></dd></div>
+      </dl>
+    </section>
+    {{ end }}
+  </main>
+  <footer>
+    <p>時計奈野 © 2026 Si Hang Xie</p>
+    <p><a href="{{ "ai/" | relLangURL }}">{{ $labels.ai_statement_label }}</a></p>
+    <p>{{ $labels.legal_note }}</p>
+  </footer>
+</body>
+</html>
