@@ -77,6 +77,22 @@ test("all languages share the latest work's release data and introduction", () =
   }
 });
 
+test("public credits use the Lost Raven alias without exposing personal contact details", () => {
+  for (const language of languages) {
+    const home = html(standard.destination, language);
+    const statement = html(standard.destination, language, "ai");
+    for (const page of [home, statement]) {
+      assert.match(page, /© 2026 Lost Raven/);
+    }
+    assert.match(home, /<dd>Lost Raven<\/dd>/);
+    assert.deepEqual(
+      [...home.matchAll(/mailto:([^"]+)/g)].map(([, address]) => address),
+      ["contact@tokeinano.com"],
+    );
+    assert.deepEqual([...statement.matchAll(/mailto:([^"]+)/g)], []);
+  }
+});
+
 test("cover grid includes upcoming and released works, ordered by release", () => {
   for (const language of languages) {
     const index = html(standard.destination, language, "works");
